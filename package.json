@@ -1,0 +1,26 @@
+{
+  "name": "mobx-select",
+  "version": "1.0.0",
+  "license": "WTFPL",
+  "description": "Inject analog for using with mobx-react-lite",
+  "repository": "farwayer/mobx-select",
+  "author": "farwayer <farwayer@gmail.com>",
+  "scripts": {
+    "prepack": "yarn clean && yarn cjs && yarn esm",
+    "cjs": "babel --out-dir cjs src",
+    "esm": "ESM=1 babel --out-dir esm src",
+    "clean": "rm -rf cjs esm"
+  },
+  "main": "cjs",
+  "module": "esm",
+  "react-native": "src",
+  "peerDependencies": {
+    "mobx-react-lite": "*"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
+    "@babel/preset-env": "^7.6.2"
+  }
+}
