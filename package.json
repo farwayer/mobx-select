@@ -1,6 +1,6 @@
 {
   "name": "mobx-select",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "WTFPL",
   "description": "Inject analog for using with mobx-react-lite",
   "repository": "farwayer/mobx-select",
