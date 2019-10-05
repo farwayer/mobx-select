@@ -2,12 +2,12 @@ import {createContext, useContext} from 'react'
 import {useObserver} from 'mobx-react-lite'
 
 
-export const Context = createContext()
-export const StoreProvider = Context.Provider
+export const StoreContext = createContext()
+export const StoreProvider = StoreContext.Provider
 
 export function select(Component, selector) {
   const Selector = props => {
-    const store = useContext(Context)
+    const store = useContext(StoreContext)
 
     return useObserver(() => {
       const finalProps = Object.assign({}, props, selector(store, props))
