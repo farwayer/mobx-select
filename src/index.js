@@ -10,7 +10,7 @@ export function select(Component, selector) {
     const store = useContext(StoreContext)
 
     return useObserver(() => {
-      const finalProps = Object.assign({}, props, selector(store, props))
+      const finalProps = Object.assign({}, props, selector?.(store, props))
       return Component(finalProps)
     })
   }
