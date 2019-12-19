@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.1.1
+
+- selector can be omitted
+
 ### 1.1.0
 
 - export context as StoreContext
