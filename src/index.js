@@ -1,4 +1,4 @@
-import React, {createContext, useContext} from 'react'
+import {createContext, useContext, createElement} from 'react'
 import {observer} from 'mobx-react-lite'
 
 
@@ -9,7 +9,7 @@ export function select(Component, selector) {
   const Selector = props => {
     const store = useContext(StoreContext)
     const finalProps = Object.assign({}, props, selector?.(store, props))
-    return <Component {...finalProps}/>
+    return createElement(Component, finalProps)
   }
   Selector.displayName = selectorName(Component)
 
