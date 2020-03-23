@@ -6,14 +6,14 @@
   "repository": "farwayer/mobx-select",
   "author": "farwayer <farwayer@gmail.com>",
   "scripts": {
-    "prepack": "yarn clean && yarn cjs && yarn esm",
-    "cjs": "babel --out-dir cjs src",
-    "esm": "ESM=1 babel --out-dir esm src",
-    "clean": "rm -rf cjs esm"
+    "prepack": "yarn cjs && yarn esm",
+    "cjs": "babel --out-file index.cjs.js index.js",
+    "esm": "ESM=1 babel --out-file index.esm.js index.js"
   },
-  "main": "cjs",
-  "module": "esm",
-  "react-native": "src",
+  "type": "module",
+  "main": "index.cjs.js",
+  "module": "index.esm.js",
+  "react-native": "index.js",
   "keywords": [
     "mobx",
     "mobx-react",

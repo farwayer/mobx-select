@@ -1,8 +1,12 @@
 const esm = !!process.env.ESM
 
-module.exports = {
+
+export default {
   presets: [
-    ['@babel/preset-env', {loose: true, ...(esm ? {modules: false} : {})}],
+    ['@babel/preset-env', {
+      modules: esm ? false : undefined,
+      loose: true,
+    }],
   ],
   plugins: [
     ['@babel/plugin-proposal-optional-chaining', {loose: true}],
