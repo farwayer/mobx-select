@@ -34,3 +34,33 @@ function App() {
   </StoreProvider>
 }
 ```
+
+## Using with non-function components
+
+You can use `select()` with non-function components. But keep in mind that
+access to all observable values inside component will not be tracked. So you
+need to get all necessary fields in selector and pass it as scalar (!) values.
+Use `warnNonFunction: false` option to hide warning about it.
+
+```js
+select(Title, (app, props) => {
+  const asset = app.assets.get(props.id)
+  const title = asset?.title 
+  // asset is mobx observable object, title is scalar
+  return {asset, title}
+}, {warnNonFunction: false})
+
+class Title extends React.Component {
+  render() {
+    const {title} = this.props
+
+    // (!) WARN: access to price will not be tracked!
+    // (!) its change will not cause component render 
+    const price = this.props.asset?.price
+
+    return (
+      <span>{title} {price}</span>
+    )
+  }
+}
+```
