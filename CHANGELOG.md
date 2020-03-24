@@ -1,5 +1,11 @@
 ## Changelog
 
+### 2.1.0
+
+- back behaviour with calling function component to track observable changes
+- warn for non-function components (can be disabled with
+`warnNonFunction: false` option)
+
 ### 2.0.0
 
 - use `observer` instead `useObserver`
