@@ -13,10 +13,7 @@ export function select(Component, selector, options = {}) {
   } = options
   const functional = isFunctional(Component)
 
-  if (
-    (functional && isMemo(Component)) ||
-    isPure(Component)
-  ) {
+  if (isMemo(Component) || isPure(Component)) {
     warnNonFunction = false
   }
 
