@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.1.2
+
+- fix wrong memo check
+
 ### 2.1.1
 
 - do not warn non-function for memo and PureComponent
