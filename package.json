@@ -22,6 +22,9 @@
     "observer",
     "mobx-state-tree"
   ],
+  "dependencies": {
+    "react-is": "^16.13.1"
+  },
   "peerDependencies": {
     "mobx-react-lite": "*"
   },

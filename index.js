@@ -1,4 +1,5 @@
-import {createContext, useContext, createElement} from 'react'
+import {createContext, useContext, createElement, PureComponent} from 'react'
+import ReactIs from 'react-is'
 import {observer} from 'mobx-react-lite'
 
 
@@ -6,11 +7,18 @@ export const StoreContext = createContext()
 export const StoreProvider = StoreContext.Provider
 
 export function select(Component, selector, options = {}) {
-  const {
+  let {
     name = componentName(Component),
     warnNonFunction = true,
   } = options
   const functional = isFunctional(Component)
+
+  if (
+    (functional && isMemo(Component)) ||
+    isPure(Component)
+  ) {
+    warnNonFunction = false
+  }
 
   let nonFunctionWarnShowed = false
 
@@ -72,4 +80,12 @@ function isFunctional(Component) {
     typeof Component === 'function' &&
     !Component.prototype?.isReactComponent
   )
+}
+
+function isMemo(Component) {
+  return Component.$$typeof === ReactIs.Memo
+}
+
+function isPure(Component) {
+  return Component.prototype instanceof PureComponent
 }
