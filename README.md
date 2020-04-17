@@ -10,29 +10,48 @@ _MobX inject analog for using with [mobx-react-lite](https://github.com/mobxjs/m
 yarn add mobx-select
 ```
 
+**asset.js**
 ```js
-import {StoreProvider, select} from 'mobx-select'
+import {select} from 'mobx-select'
 
-function AssetView({
+export default select(Asset, (app, props) => {
+  const {id} = props
+  const asset = app.assets.get(id)
+
+  const onRemove = useCallback(() => {
+    app.removeAsset(id)
+  }, [id])
+
+  return {asset, onRemove}
+})
+
+function Asset({
   asset = {},
+  onRemove,
 }) {
   return (
-    <span>{asset.name}</span>
+    <div>
+      <span>{asset.name}</span>
+      <button onClick={onRemove}>Remove</button>
+    </div>
   )
 }
+```
 
-const Asset = select(AssetView, (app, props) => {
-  const asset = app.assets.get(props.id)
-  return {asset}
-})
+**app.js**
+```js
+import {StoreProvider} from 'mobx-select'
+import Asset from './asset'
 
 // creating MobX or MobX-State-Tree store
 const app = createStore()
 
-function App() {
-  <StoreProvider value={app}>
-    <Asset id='1'/>
-  </StoreProvider>
+export default function App() {
+  return (
+    <StoreProvider value={app}>
+      <Asset id='1'/>
+    </StoreProvider>
+  )
 }
 ```
 
