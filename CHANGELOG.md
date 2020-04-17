@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.1.1
+
+- do not warn non-function for memo and PureComponent
+
 ### 2.1.0
 
 - back behaviour with calling function component to track observable changes
