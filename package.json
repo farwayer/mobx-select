@@ -2,7 +2,7 @@
   "name": "mobx-select",
   "version": "2.1.2",
   "license": "WTFPL",
-  "description": "Inject analog for using with mobx-react-lite",
+  "description": "MobX and MobX-State-Tree store selector for using with mobx-react-lite",
   "repository": "farwayer/mobx-select",
   "author": "farwayer <farwayer@gmail.com>",
   "scripts": {
@@ -19,6 +19,9 @@
     "mobx-react",
     "mobx-react-lite",
     "inject",
+    "store",
+    "select",
+    "selector",
     "observer",
     "mobx-state-tree"
   ],
