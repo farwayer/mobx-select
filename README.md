@@ -1,6 +1,6 @@
 ## mobx-select
 
-_MobX inject analog for using with [mobx-react-lite](https://github.com/mobxjs/mobx-react-lite)_
+_MobX and MobX-State-Tree store selector for using with [mobx-react-lite](https://github.com/mobxjs/mobx-react-lite)_
 
 [![NPM version](https://img.shields.io/npm/v/mobx-select.svg)](https://www.npmjs.com/package/mobx-select)
 
