@@ -28,6 +28,9 @@
     "@babel/preset-env": "^7.9.6",
     "cross-env": "^7.0.2"
   },
+  "files": [
+    "index*.js"
+  ],
   "keywords": [
     "mobx",
     "mobx-react",
