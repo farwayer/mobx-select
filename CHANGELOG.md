@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.1.3
+
+- sideEffects: false
+
 ### 2.1.2
 
 - fix wrong memo check
