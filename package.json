@@ -15,17 +15,6 @@
   "module": "index.esm.js",
   "react-native": "index.js",
   "sideEffects": false,
-  "keywords": [
-    "mobx",
-    "mobx-react",
-    "mobx-react-lite",
-    "inject",
-    "store",
-    "select",
-    "selector",
-    "observer",
-    "mobx-state-tree"
-  ],
   "dependencies": {
     "react-is": "^16.13.1"
   },
@@ -38,5 +27,16 @@
     "@babel/plugin-proposal-optional-chaining": "^7.9.0",
     "@babel/preset-env": "^7.9.6",
     "cross-env": "^7.0.2"
-  }
+  },
+  "keywords": [
+    "mobx",
+    "mobx-react",
+    "mobx-react-lite",
+    "inject",
+    "store",
+    "select",
+    "selector",
+    "observer",
+    "mobx-state-tree"
+  ]
 }
