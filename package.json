@@ -1,6 +1,6 @@
 {
   "name": "mobx-select",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "license": "WTFPL",
   "description": "MobX and MobX-State-Tree store selector for using with mobx-react-lite",
   "repository": "farwayer/mobx-select",
