@@ -8,7 +8,7 @@
   "scripts": {
     "prepack": "yarn cjs && yarn esm",
     "cjs": "babel --out-file index.cjs.js index.js",
-    "esm": "ESM=1 babel --out-file index.esm.js index.js"
+    "esm": "cross-env ESM=1 babel --out-file index.esm.js index.js"
   },
   "type": "module",
   "main": "index.cjs.js",
@@ -36,6 +36,7 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-optional-chaining": "^7.9.0",
-    "@babel/preset-env": "^7.9.6"
+    "@babel/preset-env": "^7.9.6",
+    "cross-env": "^7.0.2"
   }
 }
