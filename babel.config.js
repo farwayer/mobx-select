@@ -4,8 +4,9 @@ const esm = !!process.env.ESM
 export default {
   presets: [
     ['@babel/preset-env', {
-      modules: esm ? false : undefined,
+      bugfixes: true,
       loose: true,
+      modules: esm ? false : undefined,
     }],
   ],
   plugins: [
