@@ -7,7 +7,10 @@ import {observer} from 'mobx-react-lite'
 export const StoreContext = createContext()
 export const StoreProvider = StoreContext.Provider
 
-export function select(Component, selector, options = {}) {
+export function select(Component, ...selectors) {
+  const lastParam = selectors[selectors.length - 1]
+  const options = isObj(lastParam) ? selectors.splice(-1, 1)[0] : {}
+
   let {
     name = componentName(Component),
     warnNonFunction = true,
@@ -22,7 +25,10 @@ export function select(Component, selector, options = {}) {
 
   const Selector = (props, ...args) => {
     const store = useContext(StoreContext)
-    const finalProps = Object.assign({}, props, selector?.(store, props))
+
+    const finalProps = selectors.reduce((props, selector) => (
+      Object.assign(props, selector(store, props))
+    ), Object.assign({}, props))
 
     if (functional) {
       return Component(finalProps, ...args)
@@ -33,8 +39,8 @@ export function select(Component, selector, options = {}) {
         `You are trying to use select() with non-function component ${name}. ` +
         "Keep in mind that access to all observable values inside component " +
         "will not be tracked. So you need to get all necessary fields in " +
-        "selector and pass it as scalar (!) values. Set " +
-        "`warnNonFunction: false` to hide this warning."
+        "selector and pass it as scalar (!) values. Pass " +
+        "`warnNonFunction: false` option as last parameter to hide this warning."
       )
       nonFunctionWarnShowed = true
     }
