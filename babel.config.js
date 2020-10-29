@@ -9,7 +9,4 @@ export default {
       modules: esm ? false : undefined,
     }],
   ],
-  plugins: [
-    ['@babel/plugin-proposal-optional-chaining', {loose: true}],
-  ],
 }
