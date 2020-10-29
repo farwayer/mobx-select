@@ -14,16 +14,24 @@ yarn add mobx-select
 ```js
 import {select} from 'mobx-select'
 
-export default select(Asset, (app, props) => {
-  const {id} = props
-  const asset = app.assets.get(id)
+function assetSelector(app, props) {
+  const {asset} = app.assets.get(props.id)
+  return {asset}
+}
 
+function removeAssetSelector(app, prop) {
+  const {id} = props
   const onRemove = useCallback(() => {
     app.removeAsset(id)
   }, [id])
 
-  return {asset, onRemove}
-})
+  return {onRemove}
+}
+
+export default select(Asset,
+  assetSelector,
+  removeAssetSelector,
+)
 
 function Asset({
   asset = {},
@@ -58,7 +66,7 @@ export default function App() {
 ## Render optimization
 
 If you access nested observable values (MobX objects, maps, arrays) only inside
-selector but not in component you should use `memo` or `PureComponent`
+selector but not in component you can use `memo` or `PureComponent`
 to prevent unnecessary re-rendering.
 
 ```js
@@ -93,7 +101,7 @@ you're doing).
 ```js
 export default select(Title, (app, props) => {
   const asset = app.assets.get(props.id)
-  const title = asset?.title 
+  const title = asset?.title
   // asset is mobx observable object, title is scalar
   return {asset, title}
 }, {warnNonFunction: false})
