@@ -15,7 +15,7 @@ yarn add mobx-select
 import {select} from 'mobx-select'
 
 function assetSelector(app, props) {
-  const {asset} = app.assets.get(props.id)
+  const asset = app.assets.get(props.id)
   return {asset}
 }
 
