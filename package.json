@@ -16,6 +16,7 @@
   "react-native": "index.js",
   "sideEffects": false,
   "dependencies": {
+    "istp": "^1.0.5",
     "react-is": "^17.0.1"
   },
   "peerDependencies": {

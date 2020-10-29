@@ -1,5 +1,6 @@
 import {createContext, useContext, createElement, PureComponent} from 'react'
 import ReactIs from 'react-is'
+import {isFn, isObj, isStr} from 'istp'
 import {observer} from 'mobx-react-lite'
 
 
@@ -49,11 +50,11 @@ export function select(Component, selector, options = {}) {
 // TODO: other React component types (ForwardRef, Context, etc.)
 // TODO: move to external package
 function componentName(Component) {
-  if (typeof Component === 'string') {
+  if (isStr(Component)) {
     return Component
   }
 
-  if (typeof Component === 'function') {
+  if (isFn(Component)) {
     return (
       Component.displayName ||
       Component.name ||
@@ -62,7 +63,7 @@ function componentName(Component) {
     )
   }
 
-  if (typeof Component === 'object') {
+  if (isObj(Component)) {
     // memo
     if (Component.type) {
       return componentName(Component.type)
@@ -74,7 +75,7 @@ function componentName(Component) {
 
 function isFunctional(Component) {
   return (
-    typeof Component === 'function' &&
+    isFn(Component) &&
     !Component.prototype?.isReactComponent
   )
 }
