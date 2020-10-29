@@ -8,8 +8,8 @@ export const StoreContext = createContext()
 export const StoreProvider = StoreContext.Provider
 
 export function select(Component, ...selectors) {
-  const lastParam = selectors[selectors.length - 1]
-  const options = isObj(lastParam) ? selectors.splice(-1, 1)[0] : {}
+  const lastArg = selectors[selectors.length - 1]
+  const options = isObj(lastArg) ? selectors.splice(-1, 1)[0] : {}
 
   let {
     name = componentName(Component),
@@ -40,7 +40,7 @@ export function select(Component, ...selectors) {
         "Keep in mind that access to all observable values inside component " +
         "will not be tracked. So you need to get all necessary fields in " +
         "selector and pass it as scalar (!) values. Pass " +
-        "`warnNonFunction: false` option as last parameter to hide this warning."
+        "`warnNonFunction: false` option as last argument to hide this warning."
       )
       nonFunctionWarnShowed = true
     }
