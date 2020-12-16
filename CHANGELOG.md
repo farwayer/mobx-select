@@ -1,6 +1,11 @@
 ## Changelog
 
+### 2.2.1
+
+- assign props to new object each selector call
+
 ### 2.2.0
+
 - can pass several selectors as args
 
 ### 2.1.3
