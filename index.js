@@ -27,8 +27,8 @@ export function select(Component, ...selectors) {
     const store = useContext(StoreContext)
 
     const finalProps = selectors.reduce((props, selector) => (
-      Object.assign(props, selector(store, props))
-    ), Object.assign({}, props))
+      Object.assign({}, props, selector(store, props))
+    ), props)
 
     if (functional) {
       return Component(finalProps, ...args)
