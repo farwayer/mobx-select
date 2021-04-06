@@ -7,7 +7,7 @@ for using with [mobx-react-lite](https://github.com/mobxjs/mobx-react-lite)_
 [![NPM version](https://img.shields.io/npm/v/mobx-select.svg)](https://www.npmjs.com/package/mobx-select)
 
 Lib is small and it size [limited](https://github.com/ai/size-limit)
-to **877 bytes** (all deps, minified and gzipped).
+to **814 bytes** (all deps, minified and gzipped).
 
 ## How to use
 
