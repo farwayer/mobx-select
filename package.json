@@ -16,8 +16,7 @@
   "react-native": "index.js",
   "sideEffects": false,
   "dependencies": {
-    "istp": "^1.0.6",
-    "react-is": "^17.0.2"
+    "istp": "^1.0.6"
   },
   "peerDependencies": {
     "mobx-react-lite": "*"

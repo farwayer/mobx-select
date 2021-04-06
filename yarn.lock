@@ -5130,7 +5130,6 @@ fsevents@~2.3.1:
     "@size-limit/preset-small-lib": ^4.10.2
     cross-env: ^7.0.3
     istp: ^1.0.6
-    react-is: ^17.0.2
     size-limit: ^4.10.2
   peerDependencies:
     mobx-react-lite: "*"
@@ -6284,13 +6283,6 @@ fsevents@~2.3.1:
     randombytes: ^2.0.5
     safe-buffer: ^5.1.0
   checksum: 24658ce99e0a325f27d157fbff9b111f9fa2f56876031ac9a09bcd6c5ae53d3c3f1b124d7e1b813803ee1b09e50dd1561ac7f7a8ba2930319cbcda5e827602ab
-  languageName: node
-  linkType: hard
-
-"react-is@npm:^17.0.2":
-  version: 17.0.2
-  resolution: "react-is@npm:17.0.2"
-  checksum: 3eff23f410d40ab9bc5177f147a92c7f42c356a21ecea340e0554566956d67e5e1ba56f26cc7fa22339ac3c7151744177bd6305eaa26d3cbf15f354358c9d9b6
   languageName: node
   linkType: hard
 

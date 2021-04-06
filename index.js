@@ -1,7 +1,12 @@
 import {createContext, useContext, createElement, PureComponent} from 'react'
-import ReactIs from 'react-is'
 import {isFn, isObj, isStr, isUndef} from 'istp'
 import {observer} from 'mobx-react-lite'
+
+
+// from react-is
+const symbolFor = typeof Symbol === 'function' && Symbol.for || (() => {})
+const Memo = symbolFor('react.memo') || 0xead3
+const ForwardRef = symbolFor('react.forward_ref') || 0xead0
 
 
 export const StoreContext = createContext()
@@ -17,7 +22,7 @@ export function select(Component, ...selectors) {
   } = options
   const functional = isFunctional(Component)
 
-  if (isMemo(Component) || isPure(Component)) {
+  if (isMemo(Component) || isForwardRef(Component) || isPure(Component)) {
     warnNonFunction = false
   }
 
@@ -103,7 +108,11 @@ function isFunctional(Component) {
 }
 
 function isMemo(Component) {
-  return Component.$$typeof === ReactIs.Memo
+  return Component.$$typeof === Memo
+}
+
+function isForwardRef(Component) {
+  return Component.$$typeof === ForwardRef
 }
 
 function isPure(Component) {
