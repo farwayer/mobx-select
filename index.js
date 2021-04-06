@@ -2,18 +2,6 @@ import {createContext, useContext, createElement, PureComponent} from 'react'
 import {observer} from 'mobx-react-lite'
 
 
-// type checks
-const isFn = val => typeof val === 'function'
-const isStr = val => typeof val === 'string'
-const isObj = val => typeof val === 'object'
-const isUndef = val => val === undefined
-
-// from react-is
-const symbolFor = typeof Symbol === 'function' && Symbol.for || (() => {})
-const Memo = symbolFor('react.memo') || 0xead3
-const ForwardRef = symbolFor('react.forward_ref') || 0xead0
-
-
 export const StoreContext = createContext()
 export const StoreProvider = StoreContext.Provider
 
@@ -105,6 +93,13 @@ function componentName(Component) {
   return "Unknown"
 }
 
+
+// from react-is
+const symbolFor = typeof Symbol === 'function' && Symbol.for || (() => {})
+const Memo = symbolFor('react.memo') || 0xead3
+const ForwardRef = symbolFor('react.forward_ref') || 0xead0
+
+// react component type checks
 function isFunctional(Component) {
   return (
     isFn(Component) &&
@@ -122,4 +117,21 @@ function isForwardRef(Component) {
 
 function isPure(Component) {
   return Component.prototype instanceof PureComponent
+}
+
+// type checks
+function isFn(val) {
+  return typeof val === 'function'
+}
+
+function isStr(val) {
+  return typeof val === 'string'
+}
+
+function isObj(val) {
+  return typeof val === 'object'
+}
+
+function isUndef(val) {
+  return val === undefined
 }
