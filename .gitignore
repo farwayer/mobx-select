@@ -1,4 +1,6 @@
 .idea/
 node_modules/
+.yarn/*
+!.yarn/releases/
 index.cjs.js
 index.esm.js
