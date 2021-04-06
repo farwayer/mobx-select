@@ -133,3 +133,47 @@ class Title extends React.Component {
   }
 }
 ```
+
+## References
+
+References will be automatically passed to components:
+
+```js
+function UserName({
+  name,
+}, ref) {
+  return (
+    <input ref={ref} value={name}/>
+  )
+}
+
+class UserSignInCount extends React.Component {
+  render() {
+    return (
+      <span>{this.props.count}</span>
+    )
+  }
+  
+  log() {
+    console.log(this.props.count)
+  }
+}
+
+function App() {
+  const nameRef = useRef()
+  const signInCountRef = useRef()
+  
+  const tadam = useCallback(() => {
+    nameRef.current.value = "User TADAM!"
+    signInCountRef.current.log()
+  })
+  
+  return (
+    <>
+      <UserName ref={nameRef}/>
+      <UserSignInCount ref={signInCountRef}/>
+      <button onClick={tadam}>TADAM!</button>
+    </>
+  )
+}
+```
