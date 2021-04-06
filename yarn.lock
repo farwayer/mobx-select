@@ -4558,13 +4558,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"istp@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "istp@npm:1.0.6"
-  checksum: a06c72df7ed1ee695dc3431ea6a6e028a5c3afa9404c70a9da0454b541c6d140ddd94a7f3ab2fe7a36c7965774d8e25e3ea2a74f9b3fc8de350dde141a4984bf
-  languageName: node
-  linkType: hard
-
 "js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -5129,7 +5122,6 @@ fsevents@~2.3.1:
     "@babel/preset-env": ^7.13.12
     "@size-limit/preset-small-lib": ^4.10.2
     cross-env: ^7.0.3
-    istp: ^1.0.6
     size-limit: ^4.10.2
   peerDependencies:
     mobx-react-lite: "*"

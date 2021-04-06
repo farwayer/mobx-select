@@ -1,7 +1,12 @@
 import {createContext, useContext, createElement, PureComponent} from 'react'
-import {isFn, isObj, isStr, isUndef} from 'istp'
 import {observer} from 'mobx-react-lite'
 
+
+// type checks
+const isFn = val => typeof val === 'function'
+const isStr = val => typeof val === 'string'
+const isObj = val => typeof val === 'object'
+const isUndef = val => val === undefined
 
 // from react-is
 const symbolFor = typeof Symbol === 'function' && Symbol.for || (() => {})

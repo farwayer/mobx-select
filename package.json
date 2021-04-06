@@ -15,9 +15,6 @@
   "module": "index.esm.js",
   "react-native": "index.js",
   "sideEffects": false,
-  "dependencies": {
-    "istp": "^1.0.6"
-  },
   "peerDependencies": {
     "mobx-react-lite": "*"
   },
