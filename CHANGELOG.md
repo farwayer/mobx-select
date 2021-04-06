@@ -1,5 +1,10 @@
 ## Changelog
 
+### 2.3.1
+
+- remove istp dep (now the lib has no deps)
+- reduce lib size to 814 bytes
+
 ### 2.3.0
 
 - forward refs
