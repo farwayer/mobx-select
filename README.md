@@ -1,6 +1,8 @@
 ## mobx-select
 
-_MobX and MobX-State-Tree store selector for using with [mobx-react-lite](https://github.com/mobxjs/mobx-react-lite)_
+_MobX and MobX-State-Tree store selectors
+(like Redux `mapStateToProps` and `mapDispatchToProps`)
+for using with [mobx-react-lite](https://github.com/mobxjs/mobx-react-lite)_
 
 [![NPM version](https://img.shields.io/npm/v/mobx-select.svg)](https://www.npmjs.com/package/mobx-select)
 
@@ -14,13 +16,14 @@ yarn add mobx-select
 ```js
 import {select} from 'mobx-select'
 
-function assetSelector(app, props) {
+function getAsset(app, props) {
   const asset = app.assets.get(props.id)
   return {asset}
 }
 
-function removeAssetSelector(app, prop) {
+function onRemoveAsset(app, prop) {
   const {id} = props
+  
   const onRemove = useCallback(() => {
     app.removeAsset(id)
   }, [id])
@@ -28,9 +31,11 @@ function removeAssetSelector(app, prop) {
   return {onRemove}
 }
 
-export default select(Asset,
-  assetSelector,
-  removeAssetSelector,
+export default select(
+  Asset,
+  getAsset,
+  onRemoveAsset,
+  // ...other
 )
 
 function Asset({
@@ -51,7 +56,7 @@ function Asset({
 import {StoreProvider} from 'mobx-select'
 import Asset from './asset'
 
-// creating MobX or MobX-State-Tree store
+// create MobX or MobX-State-Tree store
 const app = createStore()
 
 export default function App() {
@@ -66,17 +71,21 @@ export default function App() {
 ## Render optimization
 
 If you access nested observable values (MobX objects, maps, arrays) only inside
-selector but not in component you can use `memo` or `PureComponent`
-to prevent unnecessary re-rendering.
+selectors but not in component you can use `memo` or `PureComponent`
+to prevent unnecessary extra renderings.
 
 ```js
 import {memo} from 'react'
 
-export default select(memo(Title), (app, props) => {
-  const asset = app.assets.get(props.id)
-  const title = asset?.title
+function getAssetTitle(app, props) {
+  const title = app.assets.get(props.id)?.title
   return {title}
-})
+}
+
+export default select(
+  memo(Title),
+  getAssetTitle,
+)
 
 function Title({
   title,
@@ -99,23 +108,27 @@ and `PureComponent` will be omitted automatically (assumed that you know what
 you're doing). 
 
 ```js
-export default select(Title, (app, props) => {
-  const asset = app.assets.get(props.id)
-  const title = asset?.title
-  // asset is mobx observable object, title is scalar
-  return {asset, title}
-}, {warnNonFunction: false})
+function getUserId(app) {
+  const userId = app.userId
+  return {userId}
+}
+
+export default select(
+  Title,
+  getAsset,
+  getUserId,
+{warnNonFunction: false})
 
 class Title extends React.Component {
   render() {
-    const {title} = this.props
+    const {userId, asset} = this.props
 
     // (!) WARN: access to price will not be tracked!
     // (!) changing its value will not trigger component re-render 
-    const price = this.props.asset?.price
+    const price = asset?.price
 
     return (
-      <span>{title} {price}</span>
+      <span>user={userId} {price}</span>
     )
   }
 }
