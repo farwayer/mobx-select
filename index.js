@@ -23,7 +23,7 @@ export function select(Component, ...selectors) {
 
   let nonFunctionWarnShowed = false
 
-  const Selector = (props, ...args) => {
+  const Selector = (props, ref) => {
     const store = useContext(StoreContext)
 
     if (isUndef(store)) {
@@ -35,12 +35,12 @@ export function select(Component, ...selectors) {
       )
     }
 
-    const finalProps = selectors.reduce((props, selector) => (
-      Object.assign({}, props, selector(store, props))
+    let finalProps = selectors.reduce((prevProps, selector) => (
+      Object.assign({}, prevProps, selector(store, prevProps))
     ), props)
 
     if (functional) {
-      return Component(finalProps, ...args)
+      return Component(finalProps, ref)
     }
 
     if (warnNonFunction && !nonFunctionWarnShowed) {
@@ -54,12 +54,13 @@ export function select(Component, ...selectors) {
       nonFunctionWarnShowed = true
     }
 
+    finalProps = Object.assign({ref}, finalProps)
     return createElement(Component, finalProps)
   }
 
   Selector.displayName = `select(${name})`
 
-  return observer(Selector)
+  return observer(Selector, {forwardRef: true})
 }
 
 // TODO: other React component types (Context, etc.)
