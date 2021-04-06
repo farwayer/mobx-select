@@ -1,6 +1,6 @@
 import {createContext, useContext, createElement, PureComponent} from 'react'
 import ReactIs from 'react-is'
-import {isFn, isObj, isStr} from 'istp'
+import {isFn, isObj, isStr, isUndef} from 'istp'
 import {observer} from 'mobx-react-lite'
 
 
@@ -25,6 +25,15 @@ export function select(Component, ...selectors) {
 
   const Selector = (props, ...args) => {
     const store = useContext(StoreContext)
+
+    if (isUndef(store)) {
+      console.warn(
+        "You are trying to use store that was not defined. " +
+        "Did you forget to wrap the app with <StoreProvider>? " +
+        "If you initialize the store later then pass null as default value " +
+        "to provider to hide this warning."
+      )
+    }
 
     const finalProps = selectors.reduce((props, selector) => (
       Object.assign({}, props, selector(store, props))
