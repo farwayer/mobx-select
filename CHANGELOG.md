@@ -1,5 +1,13 @@
 ## Changelog
 
+### 2.3.0
+
+- forward refs
+- correct displayName for forwardRef components
+- warn store is undefined
+- do not use react-is to reduce lib size
+- limit size to 877 bytes
+
 ### 2.2.1
 
 - assign props to new object each selector call
