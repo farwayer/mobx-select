@@ -53,7 +53,7 @@ export function select(Component, ...selectors) {
   return observer(Selector)
 }
 
-// TODO: other React component types (ForwardRef, Context, etc.)
+// TODO: other React component types (Context, etc.)
 // TODO: move to external package
 function componentName(Component) {
   if (isStr(Component)) {
@@ -73,6 +73,12 @@ function componentName(Component) {
     // memo
     if (Component.type) {
       return componentName(Component.type)
+    }
+
+    // forwardRef
+    if (Component.render) {
+      const innerName = componentName(Component.render)
+      return `ForwardRef(${innerName})`
     }
   }
 
