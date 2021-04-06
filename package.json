@@ -6,7 +6,7 @@
   "repository": "farwayer/mobx-select",
   "author": "farwayer <farwayer@gmail.com>",
   "scripts": {
-    "prepack": "yarn cjs && yarn esm",
+    "prepack": "yarn cjs && yarn esm && size-limit",
     "cjs": "babel --out-file index.cjs.js index.js",
     "esm": "cross-env ESM=1 babel --out-file index.esm.js index.js"
   },
@@ -26,7 +26,9 @@
     "@babel/cli": "^7.13.14",
     "@babel/core": "^7.13.14",
     "@babel/preset-env": "^7.13.12",
-    "cross-env": "^7.0.3"
+    "@size-limit/preset-small-lib": "^4.10.2",
+    "cross-env": "^7.0.3",
+    "size-limit": "^4.10.2"
   },
   "files": [
     "index*.js"
@@ -41,5 +43,15 @@
     "selector",
     "observer",
     "mobx-state-tree"
+  ],
+  "size-limit": [
+    {
+      "path": "index.esm.js",
+      "import": "{select, StoreProvider}",
+      "ignore": [
+        "react"
+      ],
+      "limit": "1.7 KB"
+    }
   ]
 }
